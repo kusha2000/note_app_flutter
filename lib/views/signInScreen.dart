@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
+import 'package:note_app_flutter/views/forgotPasswordScreen.dart';
 import 'package:note_app_flutter/views/signUpScreen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -54,12 +55,17 @@ class _LoginScreenState extends State<LoginScreen> {
               const SizedBox(height: 15.0),
               ElevatedButton(onPressed: () {}, child: Text("Login")),
               const SizedBox(height: 10.0),
-              Container(
-                child: const Card(
-                    child: Padding(
-                  padding: EdgeInsets.all(10.0),
-                  child: Text("Forgot Password"),
-                )),
+              GestureDetector(
+                onTap: () {
+                  Get.to(() => ForgotPasswordScreen());
+                },
+                child: Container(
+                  child: const Card(
+                      child: Padding(
+                    padding: EdgeInsets.all(10.0),
+                    child: Text("Forgot Password"),
+                  )),
+                ),
               ),
               GestureDetector(
                 onTap: () {
