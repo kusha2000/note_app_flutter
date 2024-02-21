@@ -1,8 +1,11 @@
 // ignore: file_names
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
+import 'package:note_app_flutter/services/signUpServices.dart';
 import 'package:note_app_flutter/views/signInScreen.dart';
+import 'dart:developer';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -12,6 +15,12 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
+  TextEditingController userNameController = TextEditingController();
+  TextEditingController userPhoneController = TextEditingController();
+  TextEditingController userEmailController = TextEditingController();
+  TextEditingController userPasswordController = TextEditingController();
+
+  User? currentUser = FirebaseAuth.instance.currentUser;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,6 +42,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               Container(
                 margin: const EdgeInsets.symmetric(horizontal: 30.0),
                 child: TextFormField(
+                  controller: userNameController,
                   decoration: const InputDecoration(
                       prefixIcon: Icon(Icons.person),
                       hintText: "UserName",
@@ -43,6 +53,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               Container(
                 margin: const EdgeInsets.symmetric(horizontal: 30.0),
                 child: TextFormField(
+                  controller: userPhoneController,
                   decoration: const InputDecoration(
                       prefixIcon: Icon(Icons.phone),
                       hintText: "Phone",
@@ -53,6 +64,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               Container(
                 margin: const EdgeInsets.symmetric(horizontal: 30.0),
                 child: TextFormField(
+                  controller: userEmailController,
                   decoration: const InputDecoration(
                       prefixIcon: Icon(Icons.email),
                       hintText: "Email",
@@ -63,6 +75,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               Container(
                 margin: const EdgeInsets.symmetric(horizontal: 30.0),
                 child: TextFormField(
+                  controller: userPasswordController,
                   decoration: const InputDecoration(
                       prefixIcon: Icon(Icons.password),
                       suffixIcon: Icon(Icons.visibility),
@@ -71,7 +84,23 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
               ),
               const SizedBox(height: 15.0),
-              ElevatedButton(onPressed: () {}, child: Text("Sign Up")),
+              ElevatedButton(
+                  onPressed: () async {
+                    var userName = userNameController.text.trim();
+                    var userPhone = userPhoneController.text.trim();
+                    var userEmail = userEmailController.text.trim();
+                    var userPassword = userPasswordController.text.trim();
+
+                    await FirebaseAuth.instance
+                        .createUserWithEmailAndPassword(
+                            email: userEmail, password: userPassword)
+                        .then((value) => {
+                              log("User Created"),
+                              signUpUser(
+                                  userName, userPhone, userEmail, userPassword)
+                            });
+                  },
+                  child: Text("Sign Up")),
               GestureDetector(
                 onTap: () {
                   Get.to(() => LoginScreen());
