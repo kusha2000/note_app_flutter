@@ -100,10 +100,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   userName, userPhone, userEmail, userPassword)
                             });
                   },
-                  child: Text("Sign Up")),
+                  child: const Text("Sign Up")),
               GestureDetector(
                 onTap: () {
-                  Get.to(() => LoginScreen());
+                  Get.to(() => const LoginScreen());
                 },
                 child: Container(
                   child: const Card(

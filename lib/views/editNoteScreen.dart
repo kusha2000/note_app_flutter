@@ -18,14 +18,14 @@ class _EditNoteScreenState extends State<EditNoteScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Edit Note"),
+        title: const Text("Edit Note"),
       ),
       body: Container(
         child: Column(
           children: [
             TextFormField(
               controller: noteController
-                ..text = "${Get.arguments['note'].toString()}",
+                ..text = Get.arguments['note'].toString(),
             ),
             ElevatedButton(
                 onPressed: () async {
@@ -41,7 +41,7 @@ class _EditNoteScreenState extends State<EditNoteScreen> {
                             log("Data Updated"),
                           });
                 },
-                child: Text("Update"))
+                child: const Text("Update"))
           ],
         ),
       ),

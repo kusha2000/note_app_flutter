@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:note_app_flutter/views/homeScreen.dart';
 
 class CreateNoteScreen extends StatefulWidget {
   const CreateNoteScreen({super.key});
@@ -16,17 +18,17 @@ class _CreateNoteScreenState extends State<CreateNoteScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Create Note"),
+        title: const Text("Create Note"),
       ),
       body: Container(
-        margin: EdgeInsets.symmetric(horizontal: 10),
+        margin: const EdgeInsets.symmetric(horizontal: 10),
         child: Column(
           children: [
             Container(
               child: TextFormField(
                 controller: noteController,
                 maxLines: null,
-                decoration: InputDecoration(hintText: "Add Note"),
+                decoration: const InputDecoration(hintText: "Add Note"),
               ),
             ),
             ElevatedButton(
@@ -42,12 +44,13 @@ class _CreateNoteScreenState extends State<CreateNoteScreen> {
                         "note": note,
                         "userId": userId?.uid,
                       });
+                      Get.offAll(() => const HomeScreen());
                     } catch (e) {
                       print("Error $e");
                     }
                   } else {}
                 },
-                child: Text("Add Note"))
+                child: const Text("Add Note"))
           ],
         ),
       ),

@@ -72,15 +72,15 @@ class _HomeScreenState extends State<HomeScreen> {
                             GestureDetector(
                                 onTap: () {
                                   Get.to(
-                                    () => EditNoteScreen(),
+                                    () => const EditNoteScreen(),
                                     arguments: {
                                       'note': note,
                                       'docId': docId,
                                     },
                                   );
                                 },
-                                child: Icon(Icons.edit)),
-                            SizedBox(width: 10),
+                                child: const Icon(Icons.edit)),
+                            const SizedBox(width: 10),
                             GestureDetector(
                                 onTap: () async {
                                   FirebaseFirestore.instance
@@ -88,7 +88,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       .doc(docId)
                                       .delete();
                                 },
-                                child: Icon(Icons.delete)),
+                                child: const Icon(Icons.delete)),
                           ],
                         ),
                       ),

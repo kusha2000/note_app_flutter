@@ -78,11 +78,11 @@ class _LoginScreenState extends State<LoginScreen> {
                       print("Error $e");
                     }
                   },
-                  child: Text("Login")),
+                  child: const Text("Login")),
               const SizedBox(height: 10.0),
               GestureDetector(
                 onTap: () {
-                  Get.to(() => ForgotPasswordScreen());
+                  Get.to(() => const ForgotPasswordScreen());
                 },
                 child: Container(
                   child: const Card(
@@ -94,7 +94,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               GestureDetector(
                 onTap: () {
-                  Get.to(() => SignUpScreen());
+                  Get.to(() => const SignUpScreen());
                 },
                 child: Container(
                   child: const Card(

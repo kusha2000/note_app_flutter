@@ -51,13 +51,13 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                           .sendPasswordResetEmail(email: forgotEmail)
                           .then((value) => {
                                 print("Email send"),
-                                Get.off(() => LoginScreen()),
+                                Get.off(() => const LoginScreen()),
                               });
                     } on FirebaseAuthException catch (e) {
                       print("Error $e");
                     }
                   },
-                  child: Text("Forgot Password")),
+                  child: const Text("Forgot Password")),
             ],
           ),
         ),
