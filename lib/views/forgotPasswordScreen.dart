@@ -1,6 +1,9 @@
 // ignore: file_names
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
+import 'package:note_app_flutter/views/signInScreen.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
   const ForgotPasswordScreen({super.key});
@@ -10,6 +13,7 @@ class ForgotPasswordScreen extends StatefulWidget {
 }
 
 class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
+  TextEditingController forgorPasswordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,6 +35,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
               Container(
                 margin: const EdgeInsets.symmetric(horizontal: 30.0),
                 child: TextFormField(
+                  controller: forgorPasswordController,
                   decoration: const InputDecoration(
                       prefixIcon: Icon(Icons.email),
                       hintText: "Email",
@@ -38,7 +43,21 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                 ),
               ),
               const SizedBox(height: 10.0),
-              ElevatedButton(onPressed: () {}, child: Text("Forgot Password")),
+              ElevatedButton(
+                  onPressed: () {
+                    var forgotEmail = forgorPasswordController.text.trim();
+                    try {
+                      FirebaseAuth.instance
+                          .sendPasswordResetEmail(email: forgotEmail)
+                          .then((value) => {
+                                print("Email send"),
+                                Get.off(() => LoginScreen()),
+                              });
+                    } on FirebaseAuthException catch (e) {
+                      print("Error $e");
+                    }
+                  },
+                  child: Text("Forgot Password")),
             ],
           ),
         ),
