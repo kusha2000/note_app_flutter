@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:note_app_flutter/views/createNoteScreen.dart';
+import 'package:note_app_flutter/views/editNoteScreen.dart';
 import 'package:note_app_flutter/views/signInScreen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -50,10 +51,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Text("No Data Found!"),
               );
             }
+            // ignore: unnecessary_null_comparison
             if (snapshot != null && snapshot.data != null) {
               return ListView.builder(
                   itemCount: snapshot.data!.docs.length,
                   itemBuilder: (context, index) {
+                    var docId = snapshot.data!.docs[index].id;
                     var note = snapshot.data!.docs[index]['note'];
                     DateTime date =
                         (snapshot.data!.docs[index]['createdAt']).toDate();
@@ -63,12 +66,29 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: ListTile(
                         title: Text(note),
                         subtitle: Text(formatDate),
-                        trailing: const Row(
+                        trailing: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            Icon(Icons.edit),
+                            GestureDetector(
+                                onTap: () {
+                                  Get.to(
+                                    () => EditNoteScreen(),
+                                    arguments: {
+                                      'note': note,
+                                      'docId': docId,
+                                    },
+                                  );
+                                },
+                                child: Icon(Icons.edit)),
                             SizedBox(width: 10),
-                            Icon(Icons.delete),
+                            GestureDetector(
+                                onTap: () async {
+                                  FirebaseFirestore.instance
+                                      .collection('notes')
+                                      .doc(docId)
+                                      .delete();
+                                },
+                                child: Icon(Icons.delete)),
                           ],
                         ),
                       ),
