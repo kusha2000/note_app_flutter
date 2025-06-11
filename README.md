@@ -2,13 +2,29 @@
  
 The Flutter Note App is a versatile mobile application designed to streamline note-taking tasks with its intuitive interface and robust features. Offering a seamless user experience, it includes essential functionalities such as login, signup, and password recovery, ensuring secure access for users. Once logged in, users can effortlessly create, edit, and delete notes, facilitating efficient organization and management of information. With responsive design and smooth navigation, the app caters to various screen sizes and orientations. Backed by robust security measures, users can trust their data remains protected at all times. Overall, the Flutter Note App combines convenience, security, and flexibility, making it a valuable tool for users seeking an efficient solution for note-taking and organization on the go
 
-Technologies<br>---------------
+<h3><u>Technologies Used</u></h3>
+<ul>
+🔹 Flutter<br>
+🔹 Firebase<br>
+</ul>
+<h3><u>Features</u></h3>
 
-Flutter
+<ul>
+✅ Sign In & Sign Up: Users can sign in with email and password or sign up with email, password.<br>
+✅ Forgot Password: Users can reset passwords via email link.<br>
+✅ Add Users: Input a name, address, and salary to add a new user to the list.<br>
+✅ Display Users: View the list of users in a dynamically updated table.<br>
+✅ Update Users: Edit the details of existing users.<br>
+✅ Delete Users: Remove users from the list.<br>
+</ul>
 
 <h1>This is the Full Demo of the project</h1>
 
-<img src="https://github.com/kusha2000/note_app_flutter/assets/127003267/098b6d09-cc28-42eb-af07-db41eca39a20" width="300" height="400">
+
+
+
+https://github.com/user-attachments/assets/9ad6e166-bcb8-441b-baf3-7b4edb71f35d
+
 
 
 
